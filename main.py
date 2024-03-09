@@ -6,6 +6,8 @@ import json
 
 directions = {'w': 'up', 's': 'down', 'a': 'left', 'd': 'right'}
 
+with open('scores.txt', 'r+') as f:
+    data = json.load(f)
 
 class Tank:
     def __init__(self):
@@ -89,7 +91,9 @@ while True:
             print("Destroy 10 targets. Hit = 10p. Move = -1. Miss = -5.")
             while True:
                 if target_count == 0:
-                    print(score)
+                    print(f"Score: {score}")
+                    name = input("Please enter your name: ")
+                    data[name] = str(score)
                     break
                 map_grid.draw_map(tank.x, tank.y, tank.direction, target.x, target.y)
                 tank_move = fns.tm_input()
@@ -109,11 +113,8 @@ while True:
                     score -= 1
         case "2":
             print(f'{"High Scores":-^20}')
-            with open('scores.txt', 'r+') as f:
-                data = json.load(f)
-                score_dict = data
-                for key, value in data.items():
-                    print(f"{key + " -> " + value:^20}")
+            for key, value in data.items():
+                print(f"{key + " -> " + value:^20}")
         case "3":
             print('Getting username')
             print('Saving high score')
