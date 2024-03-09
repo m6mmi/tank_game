@@ -75,10 +75,10 @@ main_actions = fns.initial_user_input()
 if main_actions == '1':
     print("Welcome to the tank game, lets GO !!")
     while True:
-        map_grid.draw_map(tank.x, tank.y, tank.direction)
+        map_grid.draw_map(tank.x, tank.y, tank.direction, target.x, target.y)
         tank_move = fns.tm_input()
         if tank_move == 'f':
-            print("Hit !!! Target detroyed.")
+            print("Hit !!! Target destroyed.")
             if tank.shoot(target.x, target.y):
                 target.reset()
             else:
