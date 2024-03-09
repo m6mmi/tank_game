@@ -13,7 +13,7 @@ def initial_user_input():
 
 
 def tm_input():
-    options = ["w", "s", "a", "d", "t"]
+    options = ["w", "s", "a", "d", "f"]
     while True:
         user_input = input("Choose where tank will go:\n"
                            "w > UP\n"

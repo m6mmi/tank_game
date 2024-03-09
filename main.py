@@ -1,5 +1,6 @@
 from random import randint
 import main_functions as fns
+import map_grid
 
 directions = {'w': 'up', 's': 'down', 'a': 'left', 'd': 'right'}
 
@@ -66,7 +67,7 @@ class Target:
 tank = Tank()
 target = Target()
 
-# Making sure that tank and target don't have same coordinates
+# Making sure that tank and target don't have the same coordinates
 while tank.x == target.x and tank.y == target.y:
     target.reset()
 
@@ -74,20 +75,20 @@ main_actions = fns.initial_user_input()
 if main_actions == '1':
     print("Welcome to the tank game, lets GO !!")
     while True:
+        map_grid.draw_map(tank.x, tank.y, tank.direction)
         tank_move = fns.tm_input()
-        if tank_move == 't':
+        if tank_move == 'f':
+            print("Hit !!! Target detroyed.")
             if tank.shoot(target.x, target.y):
                 target.reset()
             else:
                 print("Missed the target")
-
-        tank.move(directions[tank_move])
-        print(tank)
-        print(target)
+        else:
+            tank.move(directions[tank_move])
+            print(tank)
+            print(target)
 elif main_actions == '2':
     print(f'Previous result')
 elif main_actions == '3':
     print('Getting username')
     print('Saving high score')
-
-
