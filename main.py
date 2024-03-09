@@ -1,6 +1,8 @@
 from random import randint
 import main_functions as fns
 import map_grid
+import json
+
 
 directions = {'w': 'up', 's': 'down', 'a': 'left', 'd': 'right'}
 
@@ -76,24 +78,33 @@ target = Target()
 while tank.x == target.x and tank.y == target.y:
     target.reset()
 
-main_actions = fns.initial_user_input()
-if main_actions == '1':
-    print("Welcome to the tank game, lets GO !!")
-    while True:
-        map_grid.draw_map(tank.x, tank.y, tank.direction, target.x, target.y)
-        tank_move = fns.tm_input()
-        if tank_move == 'f':
-            if tank.shoot(target.x, target.y):
-                target.reset()
-                print("\nHit !!! Target destroyed.")
+while True:
+    main_actions = fns.initial_user_input()
+    if main_actions == '1':
+        print("Welcome to the tank game, lets GO !!")
+        while True:
+            map_grid.draw_map(tank.x, tank.y, tank.direction, target.x, target.y)
+            tank_move = fns.tm_input()
+            if tank_move == 'f':
+                if tank.shoot(target.x, target.y):
+                    target.reset()
+                    print("\nHit !!! Target destroyed.")
+                else:
+                    print("\nMissed the target")
+            elif tank_move == 'x':
+                break
             else:
-                print("\nMissed the target")
-        else:
-            tank.move(directions[tank_move])
-            # print(tank)
-            # print(target)
-elif main_actions == '2':
-    print(f'Previous result')
-elif main_actions == '3':
-    print('Getting username')
-    print('Saving high score')
+                tank.move(directions[tank_move])
+                # print(tank)
+                # print(target)
+    elif main_actions == '2':
+        print(f'{"High Scores":-^20}')
+        with open('scores.txt', 'r+') as f:
+            data = json.load(f)
+            score_dict = data
+            for key, value in data.items():
+                print(f"{key + " -> " + value:^20}")
+    elif main_actions == '3':
+        print('Getting username')
+        print('Saving high score')
+    break

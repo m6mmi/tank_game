@@ -40,7 +40,7 @@ def draw_map(tank_x, tank_y, tank_direction, target_x, target_y):
     elif tank_y < 0:
         vertical = abs(tank_y) + 5
 
-    # Tank facing direction
+    # Tank facing a direction
     if tank_direction == 'up':
         tank_symbol = tank_up()
     elif tank_direction == 'down':

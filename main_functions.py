@@ -13,7 +13,7 @@ def initial_user_input():
 
 
 def tm_input():
-    options = ["w", "s", "a", "d", "f"]
+    options = ["w", "s", "a", "d", "f", "x"]
     while True:
         user_input = input("Choose where tank will go:\n"
                            "w > UP\n"
@@ -21,6 +21,7 @@ def tm_input():
                            "a > LEFT\n"
                            "d > RIGHT\n"
                            "F > FIRE !!!\n"
+                           "X > Main menu\n"
                            ">>> ")
         if user_input.lower() in options:
             return user_input.lower()
