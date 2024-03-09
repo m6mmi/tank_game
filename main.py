@@ -78,9 +78,9 @@ if main_actions == '1':
         map_grid.draw_map(tank.x, tank.y, tank.direction, target.x, target.y)
         tank_move = fns.tm_input()
         if tank_move == 'f':
-            print("Hit !!! Target destroyed.")
             if tank.shoot(target.x, target.y):
                 target.reset()
+                print("Hit !!! Target destroyed.")
             else:
                 print("Missed the target")
         else:
