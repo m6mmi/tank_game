@@ -47,8 +47,9 @@ class Tank:
                     return True
                 if target_y < self.y and self.direction == 'down':
                     return True
-
-        return True
+        elif self.direction == 'left' or self.direction == 'right':
+            pass
+        return False
 
 
 class Target:
@@ -80,13 +81,13 @@ if main_actions == '1':
         if tank_move == 'f':
             if tank.shoot(target.x, target.y):
                 target.reset()
-                print("Hit !!! Target destroyed.")
+                print("\nHit !!! Target destroyed.")
             else:
-                print("Missed the target")
+                print("\nMissed the target")
         else:
             tank.move(directions[tank_move])
-            print(tank)
-            print(target)
+            # print(tank)
+            # print(target)
 elif main_actions == '2':
     print(f'Previous result')
 elif main_actions == '3':
