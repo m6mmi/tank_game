@@ -39,6 +39,13 @@ class Tank:
             print("Not present")
 
     def shoot(self, target_x, target_y):
+        if self.direction == 'up' or self.direction == 'down':
+            if target_x == self.x:
+                if target_y > self.y and self.direction == 'up':
+                    return True
+                if target_y < self.y and self.direction == 'down':
+                    return True
+
         return True
 
 
