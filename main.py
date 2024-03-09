@@ -3,6 +3,7 @@ import main_functions as fns
 
 directions = {'w': 'up', 's': 'down', 'a': 'left', 'd': 'right'}
 
+
 class Tank:
     def __init__(self):
         self.x = 0
@@ -90,8 +91,3 @@ elif main_actions == '3':
     print('Saving high score')
 
 
-#TODO  simple graphical layout and put it later separate file
-# if tank.x > target.x:
-#     print(" " * (tank.x - 1) + "#")
-# else:
-#     print(" " * (target.x - 1) + "*")
