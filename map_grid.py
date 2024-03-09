@@ -71,6 +71,3 @@ def draw_map(tank_x, tank_y, tank_direction, target_x, target_y):
             print(j, end="  ")
         print(u'\b\u2503')
     print(f"{'\u2517'}{'\u2501' * 33}{'\u251B'}")
-
-
-

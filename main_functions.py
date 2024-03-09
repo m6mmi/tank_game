@@ -20,8 +20,8 @@ def tm_input():
                            "s > DOWN\n"
                            "a > LEFT\n"
                            "d > RIGHT\n"
-                           "F > FIRE !!!\n"
-                           "X > Main menu\n"
+                           "f > FIRE !!!\n"
+                           "x > Main menu\n"
                            ">>> ")
         if user_input.lower() in options:
             return user_input.lower()

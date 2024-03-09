@@ -78,33 +78,44 @@ target = Target()
 while tank.x == target.x and tank.y == target.y:
     target.reset()
 
+
+
 while True:
-    main_actions = fns.initial_user_input()
-    if main_actions == '1':
-        print("Welcome to the tank game, lets GO !!")
-        while True:
-            map_grid.draw_map(tank.x, tank.y, tank.direction, target.x, target.y)
-            tank_move = fns.tm_input()
-            if tank_move == 'f':
-                if tank.shoot(target.x, target.y):
-                    target.reset()
-                    print("\nHit !!! Target destroyed.")
+    score = 0
+    target_count = 5
+    match fns.initial_user_input():
+        case "1":
+            print("Welcome to the tank game, lets GO !!")
+            print("Destroy 10 targets. Hit = 10p. Move = -1. Miss = -5.")
+            while True:
+                if target_count == 0:
+                    print(score)
+                    break
+                map_grid.draw_map(tank.x, tank.y, tank.direction, target.x, target.y)
+                tank_move = fns.tm_input()
+                if tank_move == 'f':
+                    if tank.shoot(target.x, target.y):
+                        target.reset()
+                        print("\nHit !!! Target destroyed.")
+                        score += 10
+                        target_count -= 1
+                    else:
+                        print("\nMissed the target")
+                        score -= 5
+                elif tank_move == 'x':
+                    break
                 else:
-                    print("\nMissed the target")
-            elif tank_move == 'x':
-                break
-            else:
-                tank.move(directions[tank_move])
-                # print(tank)
-                # print(target)
-    elif main_actions == '2':
-        print(f'{"High Scores":-^20}')
-        with open('scores.txt', 'r+') as f:
-            data = json.load(f)
-            score_dict = data
-            for key, value in data.items():
-                print(f"{key + " -> " + value:^20}")
-    elif main_actions == '3':
-        print('Getting username')
-        print('Saving high score')
-    break
+                    tank.move(directions[tank_move])
+                    score -= 1
+        case "2":
+            print(f'{"High Scores":-^20}')
+            with open('scores.txt', 'r+') as f:
+                data = json.load(f)
+                score_dict = data
+                for key, value in data.items():
+                    print(f"{key + " -> " + value:^20}")
+        case "3":
+            print('Getting username')
+            print('Saving high score')
+            break
+
