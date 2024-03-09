@@ -48,7 +48,11 @@ class Tank:
                 if target_y < self.y and self.direction == 'down':
                     return True
         elif self.direction == 'left' or self.direction == 'right':
-            pass
+            if target_y == self.y:
+                if target_x < self.x and self.direction == 'left':
+                    return True
+                if target_x > self.x and self.direction == 'right':
+                    return True
         return False
 
 
