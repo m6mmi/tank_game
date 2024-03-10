@@ -9,6 +9,7 @@ directions = {'w': 'up', 's': 'down', 'a': 'left', 'd': 'right'}
 with open('scores.txt', 'r+') as f:
     data = json.load(f)
 
+
 class Tank:
     def __init__(self):
         self.x = 0
@@ -116,7 +117,9 @@ while True:
             for key, value in data.items():
                 print(f"{key + " -> " + value:^20}")
         case "3":
-            print('Getting username')
             print('Saving high score')
+            with open("scores.txt", "w") as f:
+                new_data = json.dumps(data, indent=4)
+                f.write(new_data)
             break
 
